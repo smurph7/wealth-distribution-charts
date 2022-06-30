@@ -108,7 +108,7 @@ const CustomTooltip = ({
 
 export const WealthDistributionByPercentile = (): JSX.Element => {
   return (
-    <Flex direction="column">
+    <Flex direction="column" p={4}>
       <Text fontSize={['sm', 'sm', 'md']}>
         Wealth Distribution in Ireland By Percentile of Household Income (2020)
       </Text>
