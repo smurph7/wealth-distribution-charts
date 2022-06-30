@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { Flex, Heading } from '@chakra-ui/react';
 
-import { WealthDistributionPieChart } from './wealth-distribution-pie-chart';
+import { WealthDistributionByPercentile } from './wealth-distribution-by-percentile';
 import { WealthDistributionByAge } from './wealth-distribution-by-age';
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
         Wealth Distribution in Ireland (2020)
       </Heading>
       <Flex direction="column" gap={8}>
-        <WealthDistributionPieChart />
+        <WealthDistributionByPercentile />
         <WealthDistributionByAge />
       </Flex>
     </Flex>

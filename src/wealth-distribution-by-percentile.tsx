@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   Pie,
   PieChart,
@@ -107,79 +106,64 @@ const CustomTooltip = ({
   return <></>;
 };
 
-export const WealthDistributionPieChart = (): JSX.Element => {
-  //   const [isAnimationActive, setIsAnimationActive] = React.useState(false);
-  //   const { data: wealthDistributionData, ...query } =
-  //     useWealthDistributionByPercentile();
-  //   console.log('query', wealthDistributionData);
-  //   if (query.isSuccess) {
-  //     console.log(
-  //       Object.keys(wealthDistributionData).map(item =>
-  //         console.log(
-  //           'item',
-  //           Object.values(wealthDistributionData[item].category.label)
-  //         )
-  //       )
-  //     );
-  //   }
-
-  //   React.useEffect(() => {
-  //     if (query.isSuccess) {
-  //       setIsAnimationActive(true);
-  //     }
-  //   }, [query]);
-
+export const WealthDistributionByPercentile = (): JSX.Element => {
   return (
-    <Flex
-      direction="column"
-      width={[380, 380, 600, 800]}
-      height={[380, 380, 600, 600]}
-      overflowX="hidden"
-    >
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={800} height={600}>
-          <Pie
-            data={data}
-            // isAnimationActive={isAnimationActive}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            outerRadius="90%"
-            label={<CustomisedLabel />}
-            labelLine={false}
-          >
-            <LabelList
-              position="outside"
-              fontSize="14px"
-              fontWeight="bold"
-              fill="#000"
-              stroke="none"
-              width={200}
-              style={{
-                wordWrap: 'break-word'
-              }}
-              valueAccessor={valueAccessor('value')}
-            />
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
+    <Flex direction="column">
+      <Text fontSize={['sm', 'sm', 'md']}>
+        Wealth Distribution in Ireland By Percentile of Household Income (2020)
+      </Text>
+      <Flex
+        direction="column"
+        alignSelf="center"
+        width={[380, 380, 600, 800]}
+        height={[500, 500, 600, 600]}
+      >
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart width={800} height={600}>
+            <Pie
+              data={data}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius="90%"
+              label={<CustomisedLabel />}
+              labelLine={false}
+            >
+              <LabelList
+                position="outside"
+                fontSize="14px"
+                fontWeight="bold"
+                fill="#000"
+                stroke="none"
+                width={200}
+                style={{
+                  wordWrap: 'break-word'
+                }}
+                valueAccessor={valueAccessor('value')}
               />
-            ))}
-          </Pie>
-          <Tooltip
-            content={<CustomTooltip />}
-            allowEscapeViewBox={{ x: true, y: false }}
-          />
-        </PieChart>
-      </ResponsiveContainer>
-      <Stack align="flex-end" p={4}>
-        <Text>By Percentile of Household Income 2020</Text>
-        <Link href="https://data.cso.ie/table/HFC2038" color="blue.500">
-          Data provided by CSO
-        </Link>
-      </Stack>
+              {data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Tooltip
+              content={<CustomTooltip />}
+              allowEscapeViewBox={{ x: true, y: false }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+
+        <Stack align="flex-end" p={4} fontSize="sm" textAlign="right">
+          <Text>Data provided by CSO</Text>
+          <Link href="https://data.cso.ie/table/HFC2038" color="blue.500">
+            Household Gross and Net Wealth by Percentile of Household
+            Income(2020)
+          </Link>
+        </Stack>
+      </Flex>
     </Flex>
   );
 };
